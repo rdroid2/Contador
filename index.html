@@ -1,29 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Contador até domingo às 15h</title>
-  <script>
-    function atualizaContador() {
-      const agora = new Date();
-      const domingo = new Date();
-      domingo.setDate(agora.getDate() + ((7 - agora.getDay()) % 7));
-      domingo.setHours(15, 0, 0, 0);
-
-      const diff = domingo - agora;
-      const horas = Math.floor(diff / (1000 * 60 * 60));
-      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
-
-      document.getElementById('contador').innerHTML =
-        `${horas}h ${minutos}min ${segundos}s`;
+  <title>Contador Arraiá da Nono</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background: url('9A1C2203-EDD8-482E-AC44-1829C2094380.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    setInterval(atualizaContador, 1000);
-  </script>
+    .timer-container {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px 30px;
+      border-radius: 12px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .countdown {
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
 </head>
-<body onload="atualizaContador()">
-  <h1>Contador até domingo às 15h:</h1>
-  <h2 id="contador"></h2>
+<body>
+  <div class="timer-container">
+    <h1>Falta pouco pro Arraiá da Nono!</h1>
+    <div class="countdown" id="contador">Carregando...</div>
+  </div>
+
+  <script>
+    const destino = new Date("2025-07-20T15:30:00-03:00").getTime();
+
+    const atualizar = setInterval(() => {
+      const agora = new Date().getTime();
+      const distancia = destino - agora;
+
+      if (distancia < 0) {
+        clearInterval(atualizar);
+        document.getElementById("contador").innerHTML = "É HOJE O ARRAIÁ!";
+        return;
+      }
+
+      const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+      document.getElementById("contador").innerHTML =
+        `${dias}d ${horas}h ${minutos}min ${segundos}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
