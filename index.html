@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Contador até domingo às 15h</title>
+  <script>
+    function atualizaContador() {
+      const agora = new Date();
+      const domingo = new Date();
+      domingo.setDate(agora.getDate() + ((7 - agora.getDay()) % 7));
+      domingo.setHours(15, 0, 0, 0);
+
+      const diff = domingo - agora;
+      const horas = Math.floor(diff / (1000 * 60 * 60));
+      const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('contador').innerHTML =
+        `${horas}h ${minutos}min ${segundos}s`;
+    }
+
+    setInterval(atualizaContador, 1000);
+  </script>
+</head>
+<body onload="atualizaContador()">
+  <h1>Contador até domingo às 15h:</h1>
+  <h2 id="contador"></h2>
+</body>
+</html>
