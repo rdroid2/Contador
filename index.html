@@ -8,37 +8,47 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      font-family: 'Arial', sans-serif;
-      background: url('9A1C2203-EDD8-482E-AC44-1829C2094380.jpeg') no-repeat center center fixed;
+      background: url('F158C76B-93EB-4EB5-BCFA-73FFAB851917.jpeg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
+      font-family: 'Arial', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
+      color: #fff;
     }
 
-    .timer-container {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 20px 30px;
-      border-radius: 12px;
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      max-width: 90%;
     }
 
     h1 {
       font-size: 2em;
       margin-bottom: 15px;
+      color: #FFD700;
     }
 
     .countdown {
       font-size: 2em;
       font-weight: bold;
-      letter-spacing: 2px;
+      color: #00FFEF;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <div class="timer-container">
-    <h1>Falta pouco pro Arraiá da Nono!</h1>
+  <div class="container">
+    <h1>⏰ Contagem pro Arraiá da Nono:</h1>
     <div class="countdown" id="contador">Carregando...</div>
   </div>
 
@@ -51,7 +61,7 @@
 
       if (distancia < 0) {
         clearInterval(atualizar);
-        document.getElementById("contador").innerHTML = "É HOJE O ARRAIÁ!";
+        document.getElementById("contador").innerHTML = "É AGORA! 🔥";
         return;
       }
 
